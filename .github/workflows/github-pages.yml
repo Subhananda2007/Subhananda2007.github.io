@@ -1,4 +1,4 @@
-name: Build and Deploy Jekyll site
+name: Build and Deploy Jekyll
 
 on:
   push:
@@ -13,43 +13,26 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
-
-      - name: Cache Bundler
-        uses: actions/cache@v4
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-
-      - name: Install dependencies
-        run: bundle install --path vendor/bundle
-
-      - name: Build Jekyll site
-        run: bundle exec jekyll build -d ./_site
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+          bundler-cache: true
+      - run: bundle install --jobs 4 --retry 3
+      - run: bundle exec jekyll build -d ./_site
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: ./_site
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
