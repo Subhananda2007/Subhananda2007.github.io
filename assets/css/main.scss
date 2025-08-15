@@ -1,0 +1,139 @@
+body {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 70ch;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background: #fff;
+  color: #222;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.5rem auto;
+}
+
+a {
+  color: #1a0dab;
+  text-decoration: underline;
+  transition: color 0.2s;
+  &:hover,
+  &:focus {
+    color: #d33;
+    text-decoration: none;
+  }
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+
+  .site-logo {
+    font-weight: bold;
+    font-size: 1.3em;
+    margin-right: 2rem;
+    text-decoration: none;
+    color: #222;
+  }
+
+  ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin: 0;
+      a {
+        color: #222;
+        text-decoration: none;
+        font-weight: 500;
+        &:hover {
+          color: #d33;
+        }
+      }
+    }
+  }
+}
+
+.story {
+  article {
+    margin-bottom: 2rem;
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 0.2em;
+    }
+    .story-date,
+    .reading-time {
+      color: #888;
+      font-size: 0.95em;
+      margin-bottom: 1em;
+      display: block;
+    }
+    .story-tags {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1em 0;
+      display: flex;
+      gap: 0.5em;
+      li {
+        background: #f2f2f2;
+        border-radius: 3px;
+        padding: 0.2em 0.7em;
+        font-size: 0.95em;
+        color: #555;
+      }
+    }
+    .story-content {
+      margin-top: 1.5em;
+    }
+  }
+}
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+  color: #888;
+  font-size: 0.95em;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.5em 0 0 0;
+    display: flex;
+    gap: 1em;
+    li {
+      margin: 0;
+      a {
+        color: #888;
+        text-decoration: underline;
+        &:hover {
+          color: #d33;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;
+    padding: 1rem 0.5rem;
+  }
+  nav {
+    flex-direction: column;
+    gap: 1rem;
+    .site-logo {
+      margin-right: 0;
+    }
+    ul {
+      gap: 1rem;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ...existing code or add head as needed... -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title | escape }} | {{ site.title | escape }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+</head>
+<body>
+  {% include header.html %}
+  <main class="story">
+    <article>
+      <h1>{{ page.title }}</h1>
+      <p class="story-date">{{ page.date | date: "%B %-d, %Y" }}</p>
+      {% if page.cover_image %}
+        <img src="{{ page.cover_image | relative_url }}" alt="{{ page.cover_image_alt | default: page.title }}">
+      {% endif %}
+      {% if page.tags %}
+        <ul class="story-tags">
+          {% for tag in page.tags %}
+            <li>{{ tag }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      {% if page.reading-time %}
+        <p class="reading-time">{{ page.reading-time }}</p>
+      {% endif %}
+      <div class="story-content">
+        {{ content }}
+      </div>
+    </article>
+    {% include comments.html %}
+  </main>
+  {% include footer.html %}
+</body>
+</html>

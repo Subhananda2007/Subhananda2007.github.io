@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title | escape }} | {{ site.title | escape }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+</head>
+<body>
+  {% include header.html %}
+  <main class="archive">
+    <h1>{{ page.title }}</h1>
+    <ul>
+      {% assign items = page.docs | default: page.posts %}
+      {% for post in items %}
+        <li>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          {% if post.date %}
+            <span class="post-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </main>
+  {% include footer.html %}
+</body>
+</html>
